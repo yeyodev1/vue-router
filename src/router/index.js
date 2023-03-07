@@ -4,10 +4,15 @@ import HomeView from '../views/HomeView.vue'
 const router = createRouter({
   history: createWebHistory(),
   routes: [
+    // {
+    //   path: '/home',
+    //   redirect: '/'
+    // },
     {
       path: '/',
       name: 'home',
-      component: HomeView
+      component: HomeView,
+      alias: '/home'
     },
     {
       path: '/session',
