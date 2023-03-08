@@ -11,36 +11,34 @@
   </div>
 </template>
 
-<script>
-export default {
-  data() {
-    return {
-      chats: []
-    }
-  },
+<script setup>
+import { ref, watch } from 'vue'
+import { useRoute } from 'vue-router'
 
-  created() {
-    this.$watch(
-      () => this.$route.params,
-      (value) => {
-        console.log('update params', value)
-        this.chats = [
-          {
-            id: 1,
-            name: 'Fiorella'
-          },
-          {
-            id: 2,
-            name: 'Fiorella'
-          },
-          {
-            id: 3,
-            name: 'Fiorella'
-          }
-        ]
+const chats = ref()
+const route = useRoute()
+
+watch(
+  () => route.params,
+  (value) => {
+    console.log('update params', value)
+    chats.value = [
+      {
+        id: 1,
+        name: 'Fiorella'
       },
-      { inmediate: true }
-    )
+      {
+        id: 2,
+        name: 'Fiorella'
+      },
+      {
+        id: 3,
+        name: 'Fiorella'
+      }
+    ]
+  },
+  {
+    inmediate: true
   }
-}
+)
 </script>
