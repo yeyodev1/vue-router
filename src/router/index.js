@@ -2,6 +2,7 @@ import { createRouter, createWebHashHistory } from 'vue-router'
 import HomeView from '../views/HomeView.vue'
 import NotFound from '../views/404View.vue'
 
+const stage = import.meta.env.VITE_STAGE
 const router = createRouter({
   history: createWebHashHistory(),
   routes: [
@@ -65,6 +66,12 @@ const router = createRouter({
     }
   ]
 })
+if (stage === 'test') {
+  router.addRoute({
+    path: '/profile',
+    component: () => import('../views/ProfileView.vue')
+  })
+}
 
 router.beforeEach((to, from) => {
   console.log(to, from)
